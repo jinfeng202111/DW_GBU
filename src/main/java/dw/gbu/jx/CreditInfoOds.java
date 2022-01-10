@@ -27,7 +27,7 @@ public class CreditInfoOds {
         //每隔10s进行启动一个检查点【设置checkpoint的周期】
         // 表示下 Cancel 时是否需要保留当前的 Checkpoint，默认 Checkpoint 会在整个作业 Cancel 时被删除。Checkpoint 是作业级别的保存点。
         env.getCheckpointConfig().enableExternalizedCheckpoints(CheckpointConfig.ExternalizedCheckpointCleanup.RETAIN_ON_CANCELLATION);
-// 设置状态后端：MemoryStateBackend、FsStateBackend、RocksDBStateBackend，这里设置基于文件的状态后端
+        // 设置状态后端：MemoryStateBackend、FsStateBackend、RocksDBStateBackend，这里设置基于文件的状态后端
         //env.setStateBackend(new FsStateBackend("file:\\G\\flink\\checkpoints"));
         env.enableCheckpointing(10000);
         //设置模式为：exactly_one，仅一次语义
