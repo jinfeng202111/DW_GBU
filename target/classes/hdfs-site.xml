@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+       Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+
+<!-- Put site-specific property overrides in this file. -->
+<configuration>   
+    <!--指定hdfs的nameservice为clusterdev，需要和core-site.xml中的保持一致 -->   
+    <property>   
+        <name>dfs.nameservices</name>   
+        <value>clusterdev</value>   
+    </property>   
+    <!--指定磁盘预留多少空间，防止磁盘被撑满用完，单位为bytes-->   
+    <property>  
+        <name>dfs.datanode.du.reserved</name>  
+        <value>21474836480</value>    		
+    </property>  
+    <!-- clusterdev下面有两个NameNode，分别是namenode1，namenode2 -->   
+    <property>   
+        <name>dfs.ha.namenodes.clusterdev</name>   
+        <value>namenode1,namenode2</value>   
+    </property>   
+    <!-- namenode1的RPC通信地址,这里端口要和core-site.xml中fs.defaultFS保持一致 -->   
+    <property>   
+        <name>dfs.namenode.rpc-address.clusterdev.namenode1</name>   
+        <value>master01:9000</value>   
+    </property>   
+    <!-- namenode1的http通信地址 -->   
+    <property>   
+        <name>dfs.namenode.http-address.clusterdev.namenode1</name>   
+        <value>master01:50070</value>   
+    </property>   
+    <!-- namenode2的RPC通信地址,这里端口要和core-site.xml中fs.defaultFS保持一致 -->   
+    <property>   
+        <name>dfs.namenode.rpc-address.clusterdev.namenode2</name>   
+        <value>slave001:9000</value>   
+    </property>   
+    <!-- namenode2的http通信地址 -->   
+    <property>   
+        <name>dfs.namenode.http-address.clusterdev.namenode2</name>   
+        <value>slave001:50070</value>   
+    </property>   
+  
+    <!-- 指定NameNode的元数据在JournalNode上的存放位置 -->   
+    <property>   
+        <name>dfs.namenode.shared.edits.dir</name>   
+        <value>qjournal://slave004:8485;slave005:8485;slave006:8485/clusterdev</value>   
+    </property>
+   
+    <property>
+<!-- EditLog会被切割为很多段，每一段称为一个segment，Namenode发起新写入editlog的RPC调用，会使用startLogSegment方法，该参数表示发起新segment的超时时间 -->
+    <name>dfs.qjournal.start-segment.timeout.ms</name>
+    <value>90000</value>
+</property>
+<property>
+    <name>dfs.qjournal.select-input-streams.timeout.ms</name>
+    <value>90000</value>
+</property>
+<property>
+<!--写入超时时间 -->
+    <name>dfs.qjournal.write-txns.timeout.ms</name>
+    <value>90000</value>
+</property>   
+  
+    <!-- 配置失败自动切换实现方式 -->   
+    <property>   
+        <name>dfs.client.failover.proxy.provider.clusterdev</name>  
+        <value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>  
+    </property>   
+  
+    <!-- 配置隔离机制,主要用户远程管理监听其他机器相关服务 -->   
+    <property>   
+        <name>dfs.ha.fencing.methods</name>   
+        <value>sshfence</value>   
+    </property>   
+    <!-- 使用隔离机制时需要ssh免密码登陆 -->   
+    <property>   
+        <name>dfs.ha.fencing.ssh.private-key-files</name>   
+        <value>/home/hadoop/.ssh/id_rsa</value>   
+    </property>   
+  
+    <!-- 指定NameNode的元数据在JournalNode上的存放位置 -->   
+    <property>   
+        <name>dfs.journalnode.edits.dir</name>   
+        <value>/opt/bigdata/hadoop/journal</value>   
+    </property>   
+  
+    <!--指定支持高可用自动切换机制-->   
+    <property>   
+        <name>dfs.ha.automatic-failover.enabled</name>   
+        <value>true</value>   
+    </property>   
+  
+    <!--指定namenode名称空间的存储地址-->   
+    <property>   
+        <name>dfs.namenode.name.dir</name>      
+        <value>file:/opt/bigdata/hadoop/hdfs/name</value>   
+    </property>   
+  
+    <!--指定datanode数据存储地址-->   
+    <property>   
+        <name>dfs.datanode.data.dir</name>   
+        <value>file:/opt/bigdata/hadoop/hdfs/data</value>   
+    </property>   
+  
+    <!--指定数据冗余份数-->   
+    <property>   
+        <name>dfs.replication</name>   
+        <value>3</value>   
+    </property>   
+  
+    <!--指定可以通过web访问hdfs目录-->   
+    <property>   
+        <name>dfs.webhdfs.enabled</name>   
+        <value>true</value>   
+    </property>   
+  
+    <property>   
+        <name>ha.zookeeper.quorum</name>   
+        <value>slave002:2181,slave003:2181,slave004:2181</value>   
+    </property>   
+  
+    <property>  
+        <name>dfs.namenode.handler.count</name>  
+        <value>600</value>  
+        <description>The number of server threads for the namenode.</description>  
+    </property>  
+    <property>  
+        <name>dfs.datanode.handler.count</name>  
+        <value>600</value>  
+        <description>The number of server threads for the datanode.</description>  
+    </property>  
+    <property>  
+        <name>dfs.client.socket-timeout</name>  
+        <value>600000</value>  
+    </property>  
+    <property>    
+        <!--这里设置Hadoop允许打开最大文件数，默认4096，不设置的话会提示xcievers exceeded错误-->    
+        <name>dfs.datanode.max.transfer.threads</name>    
+        <value>409600</value>    
+    </property>     
+</configuration>  

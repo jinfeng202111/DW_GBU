@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+
+<!-- Put site-specific property overrides in this file. -->
+<configuration>    
+    <!-- 开启垃圾回收站功能,HDFS文件删除后先进入垃圾回收站，垃圾回收站最长保留数据时间为10天，超过一天后就删除 -->   
+    <property>  
+        <name>fs.trash.interval</name>  
+        <value>14400</value>  
+    </property>  
+    <!-- Hadoop HA部署方式下namenode访问地址，bigdatacluster-ha是名字可自定义，后面hdfs-site.xml会用到 -->   
+    <property>  
+        <name>fs.defaultFS</name>    
+        <value>hdfs://clusterdev</value>  
+    </property>  
+    <!--hadoop访问文件的IO操作都需要通过代码库。因此，在很多情况下，io.file.buffer.size都被用来设置SequenceFile中用到的读/写缓存大小。不论是对硬盘或者是网络操作来讲，较大的缓存都可以提供更高的数据传输，但这也就意味着更大的内存消耗和延迟。这个参数要设置为系统页面大小的倍数，以byte为单位，默认值是4KB，一般情况下，可以设置为64KB（65536byte）,这里设置128K-->    
+    <property>    
+        <name>io.file.buffer.size</name>    
+        <value>131072</value>    
+    </property>   
+    <!-- 指定hadoop临时目录 -->   
+    <property>   
+        <name>hadoop.tmp.dir</name>   
+        <value>/opt/bigdata/hadoop/tmp</value>   
+    </property>   
+    <!-- 指定zookeeper地址 -->   
+    <property>   
+        <name>ha.zookeeper.quorum</name>   
+        <value>slave002:2181,slave003:2181,slave004:2181</value>   
+    </property>   
+    <property>   
+        <name>ha.zookeeper.session-timeout.ms</name>   
+        <value>300000</value>   
+    </property>  
+    <!-- 指定Hadoop压缩格式，Apache官网下载的安装包不支持snappy，需要自己编译安装，如何编译安装包我在博客http://aperise.iteye.com/blog/2254487有讲解,不适用snappy的话可以不配置 -->   
+  <!--
+       	<property>    
+        <name>io.compression.codecs</name>    
+        <value>org.apache.hadoop.io.compress.SnappyCodec</value>    
+    </property>  
+  -->	
+ <!--name页签中的root 这里是hdfs登录的具体的用户名，写错了就会报错，访问hive的时候会报错-->
+  <property>
+     <name>hadoop.proxyuser.hive.hosts</name>
+     <value>*</value>
+   </property>
+   <property>
+    <name>hadoop.proxyuser.hive.groups</name>
+    <value>*</value>
+   </property>
+   <property>
+    <name>ipc.client.connect.timeout</name>
+    <value>90000</value>
+   </property>
+</configuration> 
