@@ -10,7 +10,8 @@ public class GetOdsTEcCreditChgInfo {
     private static final Logger log = LoggerFactory.getLogger(GetOdsTEcCreditChgInfo.class);
 
     public OdsTEcCreditChg getCreditChgInfo(Connection connection,String bill_code) {
-        String sql = "SELECT * FROM \"GBU_ODS_CREDIT\".\"ODS_T_EC_CREDIT_CHG\" WHERE \"i1\".\"bill_code\" = ? ORDER BY \"id\" DESC LIMIT 1";
+        String sql = "SELECT * FROM \"GBU_ODS_CREDIT\".\"ODS_T_EC_CREDIT_CHG\" WHERE \"i1\".\"cchg_status\"=70 and \"i1\".\"yn\"='1' and " +
+                "  \"i1\".\"bill_code\" = ? ORDER BY \"id\" DESC LIMIT 1";
         PreparedStatement ps = null ;
         ResultSet resultSet = null;
         OdsTEcCreditChg creditChg = new OdsTEcCreditChg();

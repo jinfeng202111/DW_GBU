@@ -123,7 +123,7 @@ public class OdsCreditAuditToHbase extends RichSinkFunction<ObjectNode> implemen
 
                 if("2".equals(oper_type) && "70".equals(after_status)){ //创建授信并且核心企业确认了，记录状态信息
                     String creditCode = jsonObjectData.get("source_code").toString();
-                    creditInfo = new GetOdsTEcCreditInfo().getCreditChgInfo(this.connection,creditCode);
+                    creditInfo = new GetOdsTEcCreditInfo().getCreditInfo(this.connection,creditCode);
 
                     //创建授信并且核心企业确认后，记录授信状态信息
                     credit.creditStatus(connection,ps,jsonObjectData.get("source_code").toString(),stringUtils.toString(approval_date).substring(0,19)
@@ -154,7 +154,7 @@ public class OdsCreditAuditToHbase extends RichSinkFunction<ObjectNode> implemen
                     OdsTEcCreditChg creditChg = new GetOdsTEcCreditChgInfo().getCreditChgInfo(this.connection,jsonObjectData.get("source_code").toString());
                     String cchg_type=creditChg.getCchgType();
                     String credit_code = creditChg.getCreditCode();
-                    creditInfo = new GetOdsTEcCreditInfo().getCreditChgInfo(this.connection,credit_code);
+                    creditInfo = new GetOdsTEcCreditInfo().getCreditInfo(this.connection,credit_code);
                     if("1".equals(cchg_type)){ //修改授信额度
                         Double after_amt = creditChg.getAfterAmt();
                         Double before_amt = creditChg.getBeforeAmt();

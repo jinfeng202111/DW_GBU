@@ -10,8 +10,9 @@ import java.sql.*;
 public class GetOdsTEcCreditInfo {
     private static final Logger log = LoggerFactory.getLogger(GetOdsTEcCreditInfo.class);
 
-    public OdsTEcCreditInfo getCreditChgInfo(Connection connection,String bill_code) throws SQLException {
-        String sql = "SELECT * FROM \"GBU_ODS_CREDIT\".\"ODS_T_EC_CREDIT_INFO\" WHERE \"i1\".\"bill_code\" = ? ORDER BY \"id\" DESC LIMIT 1";
+    public OdsTEcCreditInfo getCreditInfo(Connection connection,String bill_code) throws SQLException {
+        String sql = "SELECT * FROM \"GBU_ODS_CREDIT\".\"ODS_T_EC_CREDIT_INFO\" WHERE \"i1\".\"credit_status\"='70'  and \"i1\".\"yn\"='1' and " +
+                " \"i1\".\"bill_code\" = ? ORDER BY \"id\" DESC LIMIT 1";
         PreparedStatement ps = null;
         ResultSet resultSet =null;
         OdsTEcCreditInfo creditInfo = new OdsTEcCreditInfo();
