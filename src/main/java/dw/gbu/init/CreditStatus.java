@@ -26,6 +26,7 @@ public class CreditStatus {
             //先初始化授信创建后的数据
             String init_credit_status_create = prop.getValueByKey("init_credit_status_create");
             ps = phoenixConn.prepareStatement(init_credit_status_create);
+            ps.execute();
             phoenixConn.commit();
 
             //再初始化授信信息修改后的数据
@@ -50,16 +51,17 @@ public class CreditStatus {
                 after_amt = stringUtils.toDouble(chgResult.getDouble(4),2);
                 before_amt = stringUtils.toDouble(chgResult.getDouble(5),2);
                 end_time = null==chgResult.getString(6)?null:stringUtils.toString(chgResult.getString(6)).substring(0,19);
+
+                log.info("初始化授信状态信息:【credit_code："+credit_code+",approval_date:"+approval_date+"】");
                 if("1".equals(cchg_type)){ //修改授信额度
                     //记录授信额度修改后的信息
                     credit.creditStatusAmtchg(phoenixConn,ps,credit_code,approval_date,after_amt,stringUtils.toDouble(after_amt-before_amt,2));
                 }
-                if("1".equals(cchg_type)){ //修改授信截止日期
+                if("2".equals(cchg_type)){ //修改授信截止日期
                     //记录授信截止日期修改后的信息
                     credit.creditStatusEndtimechg(phoenixConn,ps,credit_code,approval_date, end_time);
                 }
             }
-
 
         }catch (Exception e){
             log.info("初始化授信状态信息失败");

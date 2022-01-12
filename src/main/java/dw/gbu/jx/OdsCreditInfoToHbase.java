@@ -76,7 +76,7 @@ public class OdsCreditInfoToHbase extends RichSinkFunction<ObjectNode> implement
 
         String sql_d = "DELETE FROM \"GBU_ODS_CREDIT\".\"ODS_T_EC_CREDIT_INFO\" WHERE \"id\" = ?";
        // String sql_all = "UPSERT into \"GBU_DWS_CREDIT\".\"DWS_EC_CREDIT_STATUS\"(\"credit_code\",\"mod_date\",\"i1\".\"comp_code\",\"i1\".\"confirm_time\",\"i1\".\"valid_status\",\"i1\".\"valid_time\") values (?,to_date(?),?,?,?,?)";
-        String sql_confirm = "UPSERT into \"GBU_DWS_CREDIT\".\"DWS_EC_CREDIT_STATUS\"(\"credit_code\",\"mod_date\",\"i1\".\"comp_code\",\"i1\".\"confirm_time\") values (?,to_date(?),?,?)";
+        //String sql_confirm = "UPSERT into \"GBU_DWS_CREDIT\".\"DWS_EC_CREDIT_STATUS\"(\"credit_code\",\"mod_date\",\"i1\".\"comp_code\",\"i1\".\"confirm_time\") values (?,to_date(?),?,?)";
         //String sql_valid = "UPSERT into \"GBU_DWS_CREDIT\".\"DWS_EC_CREDIT_STATUS\"(\"credit_code\",\"mod_date\",\"i1\".\"comp_code\",\"i1\".\"valid_status\",\"i1\".\"valid_time\") values (?,to_date(?),?,?,?)";
         JSONObject jsonObjectData;
         StringUtils stringUtils = new StringUtils();

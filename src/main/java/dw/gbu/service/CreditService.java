@@ -34,7 +34,9 @@ public class CreditService {
             ps.setString(1, creditCode);
             ps.setString(2, lastModTimeAmt);
             ps.setString(3, lastModTimeEndtime);
-            ps.setString(4, creditCode);
+            ps.setString(4, lastModTimeAmt);
+            ps.setString(5, lastModTimeAmt.substring(0,10)+" 00:00:00");
+            ps.setString(6, creditCode);
             ps.execute();
             connection.commit();
         }catch (Exception e){
