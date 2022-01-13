@@ -103,13 +103,26 @@ public class CreditService {
      * @param cntDate 统计日期
      */
     public void creditValidDay(Connection connection, PreparedStatement ps, String compCode, String cntDate) {
-        String credit_valid_day = prop.getValueByKey("phoenix_credit_valid_day");
+        String credit_valid_day = prop.getValueByKey("phoenix_credit_valid_day_all");
+        if(null != compCode){
+            credit_valid_day = prop.getValueByKey("phoenix_credit_valid_day");
+        }
+        int i =1;
         try{
             ps = connection.prepareStatement(credit_valid_day);
-            ps.setString(1,cntDate);
-            ps.setString(2,cntDate+" 00:00:00");
-            ps.setString(3,cntDate+" 00:00:00");
-            ps.setString(4, compCode);
+            ps.setString(i++,cntDate);
+            ps.setString(i++,cntDate+" 00:00:00");
+            ps.setString(i++,cntDate+" 00:00:00");
+            ps.setString(i++,cntDate+" 23:59:59");
+            if(null != compCode){
+                ps.setString(i++, compCode);
+            }
+            ps.setString(i++,cntDate+" 00:00:00");
+            ps.setString(i++,cntDate+" 23:59:59");
+            if(null != compCode){
+                ps.setString(i++, compCode);
+            }
+
             ps.execute();
             connection.commit();
         }catch (Exception e){
@@ -126,12 +139,17 @@ public class CreditService {
      * @param cntDate 统计日期
      */
     public void creditValid(Connection connection, PreparedStatement ps, String compCode, String cntDate) {
-        String phoenix_credit_valid = prop.getValueByKey("phoenix_credit_valid");
+        String phoenix_credit_valid = prop.getValueByKey("phoenix_credit_valid_all");
+        if(null != compCode){
+            phoenix_credit_valid = prop.getValueByKey("phoenix_credit_valid");
+        }
         try{
             ps = connection.prepareStatement(phoenix_credit_valid);
             ps.setString(1,cntDate);
             ps.setString(2,cntDate);
-            ps.setString(3, compCode);
+            if(null != compCode){
+                ps.setString(3, compCode);
+            }
             ps.execute();
             connection.commit();
         }catch (Exception e){
@@ -148,12 +166,17 @@ public class CreditService {
      * @param cntDate 统计日期
      */
     public void creditValidBl(Connection connection, PreparedStatement ps, String compCode, String cntDate) {
-        String phoenix_credit_valid_bl = prop.getValueByKey("phoenix_credit_valid_bl");
+        String phoenix_credit_valid_bl = prop.getValueByKey("phoenix_credit_valid_bl_all");
+        if(null != compCode){
+            phoenix_credit_valid_bl = prop.getValueByKey("phoenix_credit_valid_bl");
+        }
         try{
             ps = connection.prepareStatement(phoenix_credit_valid_bl);
             ps.setString(1,cntDate);
-            ps.setString(2,compCode);
-            ps.setString(3,cntDate);
+            ps.setString(2,cntDate);
+            if(null != compCode){
+                ps.setString(3,compCode);
+            }
             ps.execute();
             connection.commit();
         }catch (Exception e){
