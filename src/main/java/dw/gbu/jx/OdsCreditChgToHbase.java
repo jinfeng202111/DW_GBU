@@ -9,8 +9,8 @@ import dw.gbu.utils.StringUtils;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.flink.streaming.api.functions.sink.RichSinkFunction;
+
 import org.apache.log4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
 import java.sql.*;
@@ -20,6 +20,7 @@ public class OdsCreditChgToHbase extends RichSinkFunction<ObjectNode> implements
     PreparedStatement ps;
     private Connection connection;
     private static final Logger log = Logger.getLogger(OdsCreditChgToHbase.class);
+
     public static SimpleDateFormat sdf_time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     public static SimpleDateFormat sdf_date = new SimpleDateFormat("yyyy-MM-dd");
 
