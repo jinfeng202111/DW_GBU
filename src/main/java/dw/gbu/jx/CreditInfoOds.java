@@ -16,13 +16,13 @@ import org.apache.kafka.clients.consumer.ConsumerConfig;
 import java.util.Properties;
 
 public class CreditInfoOds {
-    private static final String topic_ExactlyOnce = "ods-t-ec-credit-info";
+    private static final String topic_ExactlyOnce = "ods-ec-credit-info";
 
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
         //设置并行度
-        env.setParallelism(3);
+        env.setParallelism(4);
         //checkpoint的设置
         //每隔10s进行启动一个检查点【设置checkpoint的周期】
         // 表示下 Cancel 时是否需要保留当前的 Checkpoint，默认 Checkpoint 会在整个作业 Cancel 时被删除。Checkpoint 是作业级别的保存点。
@@ -41,7 +41,8 @@ public class CreditInfoOds {
         //表示一旦Flink程序被cancel后，会保留checkpoint数据，以便根据实际需要恢复到指定的checkpoint
         //env.getCheckpointConfig().enableExternalizedCheckpoints(CheckpointConfig.ExternalizedCheckpointCleanup.RETAIN_ON_CANCELLATION);
         //设置statebackend,将检查点保存在hdfs上面，默认保存在内存中。这里先保存到本地
-        env.setStateBackend(new FsStateBackend("file:///g/flink/checkpoints/"));
+        //env.setStateBackend(new FsStateBackend("file:///g/flink/checkpoints/"));
+        env.setStateBackend(new FsStateBackend("hdfs:///flink/checkpoints"));
 
         //设置kafka消费参数
         Properties props = new Properties();

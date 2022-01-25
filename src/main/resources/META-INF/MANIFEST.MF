@@ -1,0 +1,164 @@
+Manifest-Version: 1.0
+Main-Class: dw.gbu.jx.CreditInfoOds
+Class-Path: /opt/bigdata/libs/scala-parser-combinators_2.12-1.1.1.jar /o
+ pt/bigdata/libs/flink-shaded-guava-18.0-12.0.jar /opt/bigdata/libs/audi
+ ence-annotations-0.5.0.jar /opt/bigdata/libs/commons-compress-1.20.jar 
+ /opt/bigdata/libs/hadoop-mapreduce-client-jobclient-2.5.1-tests.jar /op
+ t/bigdata/libs/commons-net-3.1.jar /opt/bigdata/libs/phoenix-core-4.15.
+ 0-HBase-1.4.jar /opt/bigdata/libs/hadoop-mapreduce-client-shuffle-2.10.
+ 1.jar /opt/bigdata/libs/flink-streaming-scala_2.12-1.12.1.jar /opt/bigd
+ ata/libs/httpcore-4.4.4.jar /opt/bigdata/libs/log4j-1.2-api-2.17.1.jar 
+ /opt/bigdata/libs/omid-tso-server-hbase1.x-1.0.1-tests.jar /opt/bigdata
+ /libs/paranamer-2.3.jar /opt/bigdata/libs/asm-3.1.jar /opt/bigdata/libs
+ /icu4j-localespi-60.2.jar /opt/bigdata/libs/hadoop-yarn-server-common-2
+ .10.1.jar /opt/bigdata/libs/jettison-1.1.jar /opt/bigdata/libs/hbase-cl
+ ient-1.4.10.jar /opt/bigdata/libs/joda-time-1.6.jar /opt/bigdata/libs/s
+ nappy-0.3.jar /opt/bigdata/libs/api-asn1-api-1.0.0-M20.jar /opt/bigdata
+ /libs/metrics-graphite-3.0.1.jar /opt/bigdata/libs/hadoop-yarn-registry
+ -2.10.1.jar /opt/bigdata/libs/log4j-core-2.17.1.jar /opt/bigdata/libs/j
+ sp-2.1-6.1.14.jar /opt/bigdata/libs/asm-5.0.4.jar /opt/bigdata/libs/slf
+ 4j-api-1.7.15.jar /opt/bigdata/libs/hbase-annotations-1.3.1-tests.jar /
+ opt/bigdata/libs/stax2-api-3.1.4.jar /opt/bigdata/libs/omid-codahale-me
+ trics-1.0.1.jar /opt/bigdata/libs/woodstox-core-5.0.3.jar /opt/bigdata/
+ libs/gson-2.2.4.jar /opt/bigdata/libs/tephra-core-0.15.0-incubating.jar
+  /opt/bigdata/libs/tools.jar /opt/bigdata/libs/hbase-server-1.3.1-tests
+ .jar /opt/bigdata/libs/omid-metrics-1.0.1.jar /opt/bigdata/libs/reflect
+ ions-0.9.10.jar /opt/bigdata/libs/findbugs-annotations-1.3.9-1.jar /opt
+ /bigdata/libs/omid-hbase-client-hbase1.x-1.0.1.jar /opt/bigdata/libs/hb
+ ase-common-1.4.10.jar /opt/bigdata/libs/commons-pool2-2.7.0.jar /opt/bi
+ gdata/libs/jsp-api-2.1-6.1.14.jar /opt/bigdata/libs/curator-recipes-2.1
+ 3.0.jar /opt/bigdata/libs/jets3t-0.9.0.jar /opt/bigdata/libs/icu4j-60.2
+ .jar /opt/bigdata/libs/flink-shaded-asm-7-7.1-12.0.jar /opt/bigdata/lib
+ s/HikariCP-java7-2.4.12.jar /opt/bigdata/libs/flink-shaded-zookeeper-3-
+ 3.4.14-12.0.jar /opt/bigdata/libs/slf4j-log4j12-1.7.25.jar /opt/bigdata
+ /libs/tephra-hbase-compat-1.4-0.15.0-incubating.jar /opt/bigdata/libs/f
+ link-shaded-netty-4.1.49.Final-12.0.jar /opt/bigdata/libs/metrics-core-
+ 3.1.0.jar /opt/bigdata/libs/scala-xml_2.12-1.0.6.jar /opt/bigdata/libs/
+ akka-slf4j_2.12-2.5.21.jar /opt/bigdata/libs/commons-configuration-1.6.
+ jar /opt/bigdata/libs/hbase-hadoop-compat-1.4.10.jar /opt/bigdata/libs/
+ netty-3.2.6.Final.jar /opt/bigdata/libs/hbase-server-1.4.10.jar /opt/bi
+ gdata/libs/hadoop-yarn-server-nodemanager-2.5.1.jar /opt/bigdata/libs/c
+ hill-java-0.7.6.jar /opt/bigdata/libs/hbase-metrics-1.4.10.jar /opt/big
+ data/libs/flink-runtime_2.12-1.12.1.jar /opt/bigdata/libs/joni-2.1.2.ja
+ r /opt/bigdata/libs/hbase-metrics-api-1.4.10.jar /opt/bigdata/libs/omid
+ -hbase-coprocessor-hbase1.x-1.0.1.jar /opt/bigdata/libs/scopt_2.12-3.5.
+ 0.jar /opt/bigdata/libs/guice-servlet-3.0.jar /opt/bigdata/libs/tephra-
+ api-0.15.0-incubating.jar /opt/bigdata/libs/geronimo-jcache_1.0_spec-1.
+ 0-alpha-1.jar /opt/bigdata/libs/jasper-compiler-5.5.23.jar /opt/bigdata
+ /libs/hbase-common-1.4.10-tests.jar /opt/bigdata/libs/hadoop-yarn-api-2
+ .10.1.jar /opt/bigdata/libs/omid-timestamp-storage-hbase1.x-1.0.1.jar /
+ opt/bigdata/libs/flink-java-1.12.1.jar /opt/bigdata/libs/jsr305-1.3.9.j
+ ar /opt/bigdata/libs/servlet-api-2.5-6.1.14.jar /opt/bigdata/libs/hadoo
+ p-yarn-server-applicationhistoryservice-2.5.1.jar /opt/bigdata/libs/com
+ mons-cli-1.3.1.jar /opt/bigdata/libs/twill-core-0.8.0.jar /opt/bigdata/
+ libs/hadoop-mapreduce-client-app-2.10.1.jar /opt/bigdata/libs/omid-comm
+ on-1.0.1.jar /opt/bigdata/libs/apacheds-kerberos-codec-2.0.0-M15.jar /o
+ pt/bigdata/libs/metrics-core-3.0.1.jar /opt/bigdata/libs/jackson-core-a
+ sl-1.9.2.jar /opt/bigdata/libs/okhttp-2.7.5.jar /opt/bigdata/libs/hadoo
+ p-mapreduce-client-jobclient-2.10.1.jar /opt/bigdata/libs/protobuf-java
+ -2.5.0.jar /opt/bigdata/libs/jersey-server-1.9.jar /opt/bigdata/libs/ha
+ doop-yarn-server-tests-2.5.1-tests.jar /opt/bigdata/libs/hadoop-yarn-cl
+ ient-2.10.1.jar /opt/bigdata/libs/spotbugs-annotations-3.1.9.jar /opt/b
+ igdata/libs/guava-13.0.1.jar /opt/bigdata/libs/commons-lang-2.6.jar /op
+ t/bigdata/libs/jersey-guice-1.9.jar /opt/bigdata/libs/htrace-core-3.1.0
+ -incubating.jar /opt/bigdata/libs/omid-tso-server-hbase1.x-1.0.1.jar /o
+ pt/bigdata/libs/twill-discovery-core-0.8.0.jar /opt/bigdata/libs/jcodin
+ gs-1.0.8.jar /opt/bigdata/libs/hadoop-yarn-common-2.10.1.jar /opt/bigda
+ ta/libs/flink-connector-base-1.12.1.jar /opt/bigdata/libs/guice-3.0.jar
+  /opt/bigdata/libs/leveldbjni-all-1.8.jar /opt/bigdata/libs/libthrift-0
+ .9.0.jar /opt/bigdata/libs/twill-discovery-api-0.8.0.jar /opt/bigdata/l
+ ibs/apacheds-i18n-2.0.0-M15.jar /opt/bigdata/libs/hbase-prefix-tree-1.4
+ .10.jar /opt/bigdata/libs/jersey-json-1.9.jar /opt/bigdata/libs/kryo-2.
+ 24.0.jar /opt/bigdata/libs/commons-math3-3.5.jar /opt/bigdata/libs/mssq
+ l-jdbc-6.2.1.jre7.jar /opt/bigdata/libs/jackson-xc-1.9.13.jar /opt/bigd
+ ata/libs/hadoop-common-2.10.1.jar /opt/bigdata/libs/jline-2.11.jar /opt
+ /bigdata/libs/asm-all-5.0.2.jar /opt/bigdata/libs/servlet-api-2.5.jar /
+ opt/bigdata/libs/avatica-core-1.17.0.jar /opt/bigdata/libs/flink-optimi
+ zer_2.12-1.12.1.jar /opt/bigdata/libs/chill_2.12-0.7.6.jar /opt/bigdata
+ /libs/api-util-1.0.0-M20.jar /opt/bigdata/libs/commons-lang3-3.3.2.jar 
+ /opt/bigdata/libs/hbase-annotations-1.4.10.jar /opt/bigdata/libs/hadoop
+ -yarn-server-web-proxy-2.5.1.jar /opt/bigdata/libs/httpclient-4.5.2.jar
+  /opt/bigdata/libs/jetty-sslengine-6.1.26.jar /opt/bigdata/libs/xmlenc-
+ 0.52.jar /opt/bigdata/libs/commons-collections4-4.1.jar /opt/bigdata/li
+ bs/sqlline-1.5.0.jar /opt/bigdata/libs/hadoop-hdfs-client-2.10.1.jar /o
+ pt/bigdata/libs/grizzled-slf4j_2.12-1.3.2.jar /opt/bigdata/libs/netty-a
+ ll-4.1.8.Final.jar /opt/bigdata/libs/flink-table-planner-blink_2.12-1.1
+ 2.1.jar /opt/bigdata/libs/hbase-testing-util-1.3.1.jar /opt/bigdata/lib
+ s/hadoop-hdfs-2.5.1-tests.jar /opt/bigdata/libs/jetty-6.1.26.jar /opt/b
+ igdata/libs/junit-4.12.jar /opt/bigdata/libs/log4j-1.2.17.jar /opt/bigd
+ ata/libs/commons-beanutils-1.9.4.jar /opt/bigdata/libs/jersey-core-1.9.
+ jar /opt/bigdata/libs/fastjson-1.2.75.jar /opt/bigdata/libs/hbase-hadoo
+ p2-compat-1.4.10.jar /opt/bigdata/libs/hbase-protocol-1.4.10.jar /opt/b
+ igdata/libs/hadoop-mapreduce-client-hs-2.5.1.jar /opt/bigdata/libs/java
+ ssist-3.19.0-GA.jar /opt/bigdata/libs/commons-dbcp2-2.7.0.jar /opt/bigd
+ ata/libs/okio-1.6.0.jar /opt/bigdata/libs/hbase-hadoop-compat-1.3.1-tes
+ ts.jar /opt/bigdata/libs/lz4-java-1.6.0.jar /opt/bigdata/libs/stax-api-
+ 1.0-2.jar /opt/bigdata/libs/hadoop-minicluster-2.5.1.jar /opt/bigdata/l
+ ibs/guice-assistedinject-3.0.jar /opt/bigdata/libs/commons-compiler-3.0
+ .11.jar /opt/bigdata/libs/commons-el-1.0.jar /opt/bigdata/libs/hadoop-y
+ arn-server-resourcemanager-2.5.1.jar /opt/bigdata/libs/hamcrest-core-1.
+ 3.jar /opt/bigdata/libs/flink-table-common-1.12.1.jar /opt/bigdata/libs
+ /force-shading-1.12.1.jar /opt/bigdata/libs/akka-actor_2.12-2.5.21.jar 
+ /opt/bigdata/libs/flink-scala_2.12-1.12.1.jar /opt/bigdata/libs/omid-st
+ atemachine-1.0.1.jar /opt/bigdata/libs/flink-streaming-java_2.12-1.12.1
+ .jar /opt/bigdata/libs/activation-1.1.jar /opt/bigdata/libs/snakeyaml-1
+ .11.jar /opt/bigdata/libs/hadoop-mapreduce-client-common-2.10.1.jar /op
+ t/bigdata/libs/hbase-procedure-1.4.10.jar /opt/bigdata/libs/flink-table
+ -api-scala-bridge_2.12-1.12.1.jar /opt/bigdata/libs/flink-file-sink-com
+ mon-1.12.1.jar /opt/bigdata/libs/flink-hadoop-fs-1.12.1.jar /opt/bigdat
+ a/libs/omid-hbase-common-hbase1.x-1.0.1.jar /opt/bigdata/libs/accessors
+ -smart-1.2.jar /opt/bigdata/libs/jetty-util-6.1.26.jar /opt/bigdata/lib
+ s/javax.inject-1.jar /opt/bigdata/libs/scala-compiler-2.12.7.jar /opt/b
+ igdata/libs/flink-metrics-core-1.12.1.jar /opt/bigdata/libs/config-1.3.
+ 3.jar /opt/bigdata/libs/jaxb-api-2.2.2.jar /opt/bigdata/libs/hadoop-hdf
+ s-2.7.4.jar /opt/bigdata/libs/flink-table-api-scala_2.12-1.12.1.jar /op
+ t/bigdata/libs/akka-protobuf_2.12-2.5.21.jar /opt/bigdata/libs/jcip-ann
+ otations-1.0-1.jar /opt/bigdata/libs/metrics-core-2.2.0.jar /opt/bigdat
+ a/libs/flink-connector-files-1.12.1.jar /opt/bigdata/libs/flink-table-a
+ pi-java-1.12.1.jar /opt/bigdata/libs/flink-table-runtime-blink_2.12-1.1
+ 2.1.jar /opt/bigdata/libs/java-xmlbuilder-0.4.jar /opt/bigdata/libs/min
+ log-1.2.jar /opt/bigdata/libs/flink-shaded-jackson-2.10.1-12.0.jar /opt
+ /bigdata/libs/commons-daemon-1.0.10.jar /opt/bigdata/libs/i18n-util-1.0
+ .4.jar /opt/bigdata/libs/jersey-client-1.9.jar /opt/bigdata/libs/flink-
+ queryable-state-client-java-1.12.1.jar /opt/bigdata/libs/hadoop-auth-2.
+ 10.1.jar /opt/bigdata/libs/log4j-api-2.17.1.jar /opt/bigdata/libs/jsch-
+ 0.1.42.jar /opt/bigdata/libs/mysql-connector-java-5.1.47.jar /opt/bigda
+ ta/libs/fastutil-6.5.6.jar /opt/bigdata/libs/curator-framework-2.12.0.j
+ ar /opt/bigdata/libs/netty-3.10.6.Final.jar /opt/bigdata/libs/stream-2.
+ 9.5.jar /opt/bigdata/libs/twill-api-0.8.0.jar /opt/bigdata/libs/ehcache
+ -3.3.1.jar /opt/bigdata/libs/jaxb-impl-2.2.3-1.jar /opt/bigdata/libs/ka
+ fka-clients-0.11.0.2.jar /opt/bigdata/libs/curator-client-2.13.0.jar /o
+ pt/bigdata/libs/omid-hbase-commit-table-hbase1.x-1.0.1.jar /opt/bigdata
+ /libs/argparse4j-0.8.1.jar /opt/bigdata/libs/flink-connector-kafka-base
+ _2.12-1.11.0.jar /opt/bigdata/libs/flink-table-api-java-bridge_2.12-1.1
+ 2.1.jar /opt/bigdata/libs/objenesis-2.1.jar /opt/bigdata/libs/akka-stre
+ am_2.12-2.5.21.jar /opt/bigdata/libs/hadoop-mapreduce-client-core-2.10.
+ 1.jar /opt/bigdata/libs/hadoop-common-2.5.1-tests.jar /opt/bigdata/libs
+ /jamon-runtime-2.4.1.jar /opt/bigdata/libs/twill-common-0.8.0.jar /opt/
+ bigdata/libs/zookeeper-3.4.14.jar /opt/bigdata/libs/commons-codec-1.7.j
+ ar /opt/bigdata/libs/jsp-api-2.1.jar /opt/bigdata/libs/icu4j-charset-60
+ .2.jar /opt/bigdata/libs/scala-reflect-2.12.7.jar /opt/bigdata/libs/fli
+ nk-core-1.12.1.jar /opt/bigdata/libs/omid-hbase-shims-hbase1.x-1.0.1.ja
+ r /opt/bigdata/libs/hbase-hadoop2-compat-1.3.1-tests.jar /opt/bigdata/l
+ ibs/htrace-core4-4.1.0-incubating.jar /opt/bigdata/libs/reactive-stream
+ s-1.0.2.jar /opt/bigdata/libs/commons-logging-1.2.jar /opt/bigdata/libs
+ /ssl-config-core_2.12-0.3.7.jar /opt/bigdata/libs/scala-java8-compat_2.
+ 12-0.8.0.jar /opt/bigdata/libs/nimbus-jose-jwt-7.9.jar /opt/bigdata/lib
+ s/flink-connector-kafka-0.11_2.12-1.11.0.jar /opt/bigdata/libs/jasper-r
+ untime-5.5.23.jar /opt/bigdata/libs/commons-csv-1.0.jar /opt/bigdata/li
+ bs/janino-3.0.11.jar /opt/bigdata/libs/commons-io-2.7.jar /opt/bigdata/
+ libs/commons-collections-3.2.2.jar /opt/bigdata/libs/lz4-1.3.0.jar /opt
+ /bigdata/libs/hadoop-annotations-2.10.1.jar /opt/bigdata/libs/snappy-ja
+ va-1.1.2.6.jar /opt/bigdata/libs/avro-1.7.7.jar /opt/bigdata/libs/commo
+ ns-httpclient-3.1.jar /opt/bigdata/libs/scala-library-2.12.7.jar /opt/b
+ igdata/libs/aopalliance-1.0.jar /opt/bigdata/libs/flink-connector-kafka
+ -0.10_2.12-1.11.0.jar /opt/bigdata/libs/flink-annotations-1.12.1.jar /o
+ pt/bigdata/libs/json-smart-2.3.jar /opt/bigdata/libs/jcommander-1.35.ja
+ r /opt/bigdata/libs/omid-commit-table-1.0.1.jar /opt/bigdata/libs/twill
+ -zookeeper-0.8.0.jar /opt/bigdata/libs/jackson-jaxrs-1.9.13.jar /opt/bi
+ gdata/libs/jackson-mapper-asl-1.9.2.jar /opt/bigdata/libs/commons-diges
+ ter-1.8.jar /opt/bigdata/libs/omid-transaction-client-1.0.1.jar /opt/bi
+ gdata/libs/flink-clients_2.12-1.12.1.jar /opt/bigdata/libs/antlr-runtim
+ e-3.5.2.jar /opt/bigdata/libs/disruptor-3.3.6.jar /opt/bigdata/libs/com
+ mons-math-2.2.jar /opt/bigdata/libs/hadoop-client-2.10.1.jar
+

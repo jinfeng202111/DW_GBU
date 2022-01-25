@@ -2,7 +2,6 @@ package dw.gbu.service;
 
 import dw.gbu.utils.PhoenixConnectUtil;
 import dw.gbu.utils.PropertiesUtil;
-import org.apache.commons.dbcp2.BasicDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

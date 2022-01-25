@@ -25,8 +25,6 @@ public class OdsCreditChgToHbase extends RichSinkFunction<ObjectNode> implements
 
     public OdsCreditChgToHbase() {
         super();
-
-
     }
 
     /**
