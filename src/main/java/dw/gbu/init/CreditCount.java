@@ -24,6 +24,7 @@ public class CreditCount {
 
             //初始化授信统计数据
             String init_get_credit_count = prop.getValueByKey("init_get_credit_count");
+
             ps = phoenixConn.prepareStatement(init_get_credit_count);
             ResultSet result = ps.executeQuery();
 
@@ -38,10 +39,16 @@ public class CreditCount {
                 cnt_date = null==result.getString(2)?null:stringUtils.toString(result.getString(2)).substring(0,10);
 
                 log.info("初始化授信统计数据:【comp_code："+comp_code+",cnt_date:"+cnt_date+"】");
-                //按照确认日期统计指定核心企业授信
-                credit.creditCount(phoenixConn,ps,comp_code,cnt_date,cnt_date+" 00:00:00", cnt_date+" 23:59:59" );
-                //统计所有的指定核心企业授信
-                credit.creditCount(phoenixConn,ps,comp_code,"9999-12-31","1000-01-01 00:00:00","9999-12-31 23:59:59");
+
+                //按照确认日期统计指定核心企业获得的授信笔数
+                credit.creditCountCnt(phoenixConn,ps,comp_code,cnt_date,cnt_date+" 00:00:00", cnt_date+" 23:59:59" );
+                //按照确认日期统计指定核心企业获得的授信额度
+                credit.creditCountAmt(phoenixConn,ps,comp_code,cnt_date,cnt_date+" 00:00:00", cnt_date+" 23:59:59" );
+
+                //按照确认日期统计指定核心企业获得的授信笔数
+                credit.creditCountCnt(phoenixConn,ps,comp_code,"9999-12-31","1000-01-01 00:00:00","9999-12-31 23:59:59");
+                //按照确认日期统计指定核心企业获得的授信额度
+                credit.creditCountAmt(phoenixConn,ps,comp_code,"9999-12-31","1000-01-01 00:00:00","9999-12-31 23:59:59");
 
                 //按照确认日期统计指定核心企业授信比率
                 credit.creditCountBl(phoenixConn,ps,comp_code,cnt_date);

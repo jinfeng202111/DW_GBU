@@ -129,11 +129,17 @@ public class OdsCreditAuditToHbase extends RichSinkFunction<ObjectNode> implemen
                     credit.creditStatus(connection,ps,jsonObjectData.get("source_code").toString(),stringUtils.toString(approval_date).substring(0,19)
                             ,stringUtils.toString(approval_date).substring(0,19));
 
-                    //按照确认日期统计指定核心企业授信
-                    credit.creditCount(connection,ps,creditInfo.getCompCode(),approval_date.substring(0,10),approval_date.substring(0,10)+" 00:00:00",
+                    //按照确认日期统计指定核心企业获得的授信笔数
+                    credit.creditCountCnt(connection,ps,creditInfo.getCompCode(),approval_date.substring(0,10),approval_date.substring(0,10)+" 00:00:00",
                             approval_date.substring(0,10)+" 23:59:59" );
-                    //统计所有的指定核心企业授信
-                    credit.creditCount(connection,ps,creditInfo.getCompCode(),"9999-12-31","1000-01-01 00:00:00","9999-12-31 23:59:59");
+                    //按照确认日期统计指定核心企业获得的授信额度
+                    credit.creditCountAmt(connection,ps,creditInfo.getCompCode(),approval_date.substring(0,10),approval_date.substring(0,10)+" 00:00:00",
+                            approval_date.substring(0,10)+" 23:59:59" );
+
+                    //按照确认日期统计指定核心企业获得的授信笔数
+                    credit.creditCountCnt(connection,ps,creditInfo.getCompCode(),"9999-12-31","1000-01-01 00:00:00","9999-12-31 23:59:59");
+                    //按照确认日期统计指定核心企业获得的授信额度
+                    credit.creditCountAmt(connection,ps,creditInfo.getCompCode(),"9999-12-31","1000-01-01 00:00:00","9999-12-31 23:59:59");
 
                     //按照确认日期统计指定核心企业授信比率
                     credit.creditCountBl(connection,ps,creditInfo.getCompCode(),approval_date.substring(0,10));
@@ -144,7 +150,7 @@ public class OdsCreditAuditToHbase extends RichSinkFunction<ObjectNode> implemen
                     credit.creditValidDay(connection,ps,creditInfo.getCompCode(),approval_date.substring(0,10));
 
                     //统计指定日期指定核心企业的有效失效授信
-                    credit.creditValid(connection,ps,creditInfo.getCompCode(),approval_date.substring(0,10));
+                    credit.creditValidAmt(connection,ps,creditInfo.getCompCode(),approval_date.substring(0,10));
 
                     //统计指定日期指定核心企业的有效失效授信比率
                     credit.creditValidBl(connection,ps,creditInfo.getCompCode(),approval_date.substring(0,10));
@@ -162,11 +168,18 @@ public class OdsCreditAuditToHbase extends RichSinkFunction<ObjectNode> implemen
                         //记录授信额度修改后的信息
                         credit.creditStatusAmtchg(connection,ps,credit_code,stringUtils.toString(approval_date).substring(0,19),
                                 stringUtils.toDouble(after_amt,2),stringUtils.toDouble(after_amt-before_amt,2));
-                        //按照确认日期统计指定核心企业授信
-                        credit.creditCount(connection,ps,creditInfo.getCompCode(),approval_date.substring(0,10),approval_date.substring(0,10)+" 00:00:00",
+
+                        //按照确认日期统计指定核心企业获得的授信笔数
+                        credit.creditCountCnt(connection,ps,creditInfo.getCompCode(),approval_date.substring(0,10),approval_date.substring(0,10)+" 00:00:00",
                                 approval_date.substring(0,10)+" 23:59:59" );
-                        //统计所有的指定核心企业授信
-                        credit.creditCount(connection,ps,creditInfo.getCompCode(),"9999-12-31","1000-01-01 00:00:00","9999-12-31 23:59:59");
+                        //按照确认日期统计指定核心企业获得的授信额度
+                        credit.creditCountAmt(connection,ps,creditInfo.getCompCode(),approval_date.substring(0,10),approval_date.substring(0,10)+" 00:00:00",
+                                approval_date.substring(0,10)+" 23:59:59" );
+
+                        //按照确认日期统计指定核心企业获得的授信笔数
+                        credit.creditCountCnt(connection,ps,creditInfo.getCompCode(),"9999-12-31","1000-01-01 00:00:00","9999-12-31 23:59:59");
+                        //按照确认日期统计指定核心企业获得的授信额度
+                        credit.creditCountAmt(connection,ps,creditInfo.getCompCode(),"9999-12-31","1000-01-01 00:00:00","9999-12-31 23:59:59");
 
                         //按照确认日期统计指定核心企业授信比率
                         credit.creditCountBl(connection,ps,creditInfo.getCompCode(),approval_date.substring(0,10));
@@ -182,7 +195,7 @@ public class OdsCreditAuditToHbase extends RichSinkFunction<ObjectNode> implemen
                         credit.creditValidDay(connection,ps,creditInfo.getCompCode(),approval_date.substring(0,10));
 
                         //统计指定日期指定核心企业的有效失效授信
-                        credit.creditValid(connection,ps,creditInfo.getCompCode(),approval_date.substring(0,10));
+                        credit.creditValidAmt(connection,ps,creditInfo.getCompCode(),approval_date.substring(0,10));
 
                         //统计指定日期指定核心企业的有效失效授信比率
                         credit.creditValidBl(connection,ps,creditInfo.getCompCode(),approval_date.substring(0,10));

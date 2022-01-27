@@ -1,15 +1,12 @@
 package dw.gbu.service;
 
-import dw.gbu.utils.PhoenixConnectUtil;
 import dw.gbu.utils.PropertiesUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import org.apache.log4j.Logger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
 public class CreditService {
-    private static final Logger log = LoggerFactory.getLogger(CreditService.class);
+    private static final Logger log = Logger.getLogger(CreditService.class);
 
     private static PropertiesUtil prop;
 
@@ -45,7 +42,7 @@ public class CreditService {
     }
 
     /**
-     * 授信统计
+     * 授信统计笔数
      * @param connection 连接
      * @param ps 预编译
      * @param compCode 核心企业编号
@@ -53,10 +50,35 @@ public class CreditService {
      * @param startTime 统计开始时间
      * @param endTime 统计结束时间
      */
-    public void creditCount(Connection connection,PreparedStatement ps, String compCode, String cntDate, String startTime, String endTime) {
-        String credit_count = prop.getValueByKey("phoenix_credit_count");
+    public void creditCountCnt(Connection connection,PreparedStatement ps, String compCode, String cntDate, String startTime, String endTime) {
+        String credit_count_cnt = prop.getValueByKey("phoenix_credit_count_cnt");
         try{
-            ps = connection.prepareStatement(credit_count);
+            ps = connection.prepareStatement(credit_count_cnt);
+            ps.setString(1, cntDate);
+            ps.setString(2, compCode);
+            ps.setString(3, startTime);
+            ps.setString(4, endTime);
+            ps.execute();
+            connection.commit();
+        }catch (Exception e){
+            log.error("授信统计笔数失败：【compCode："+compCode+",cntDate:"+cntDate+"】");
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 授信统计核心获得的授信额度
+     * @param connection 连接
+     * @param ps 预编译
+     * @param compCode 核心企业编号
+     * @param cntDate 统计日期
+     * @param startTime 统计开始时间
+     * @param endTime 统计结束时间
+     */
+    public void creditCountAmt(Connection connection,PreparedStatement ps, String compCode, String cntDate, String startTime, String endTime) {
+        String credit_count_cnt_amt = prop.getValueByKey("phoenix_credit_count_amt");
+        try{
+            ps = connection.prepareStatement(credit_count_cnt_amt);
             ps.setString(1, cntDate);
             ps.setString(2, compCode);
             ps.setString(3, startTime);
@@ -67,7 +89,7 @@ public class CreditService {
             ps.execute();
             connection.commit();
         }catch (Exception e){
-            log.error("授信统计失败：【compCode："+compCode+",cntDate:"+cntDate+"】");
+            log.error("授信统计核心企业获得的授信额度失败：【compCode："+compCode+",cntDate:"+cntDate+"】");
             e.printStackTrace();
         }
     }
@@ -131,13 +153,13 @@ public class CreditService {
     }
 
     /**
-     * 统计指定日期指定核心企业的有效失效授信
+     * 统计指定日期指定核心企业的有效失效授信额度
      * @param connection 连接
      * @param ps 预编译
      * @param compCode 核心企业编号
      * @param cntDate 统计日期
      */
-    public void creditValid(Connection connection, PreparedStatement ps, String compCode, String cntDate) {
+    public void creditValidAmt(Connection connection, PreparedStatement ps, String compCode, String cntDate) {
         String phoenix_credit_valid = prop.getValueByKey("phoenix_credit_valid_all");
         if(null != compCode){
             phoenix_credit_valid = prop.getValueByKey("phoenix_credit_valid");
@@ -152,7 +174,7 @@ public class CreditService {
             ps.execute();
             connection.commit();
         }catch (Exception e){
-            log.error("统计指定日期指定核心企业的有效失效授信失败：【compCode："+compCode+",cntDate:"+cntDate+"】");
+            log.error("统计指定日期指定核心企业的有效失效授信额度失败：【compCode："+compCode+",cntDate:"+cntDate+"】");
             e.printStackTrace();
         }
     }

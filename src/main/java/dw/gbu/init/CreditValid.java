@@ -46,7 +46,7 @@ public class CreditValid {
                 credit.creditValidDay(phoenixConn,ps,null,sdf.format(startDate.getTime()));
 
                 //统计指定日期指定核心企业的有效失效授信
-                credit.creditValid(phoenixConn,ps,null,sdf.format(startDate.getTime()));
+                credit.creditValidAmt(phoenixConn,ps,null,sdf.format(startDate.getTime()));
 
                 //统计指定日期指定核心企业的有效失效授信比率
                 credit.creditValidBl(phoenixConn,ps,null,sdf.format(startDate.getTime()));
