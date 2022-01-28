@@ -3,7 +3,6 @@ package dw.gbu.jx;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import dw.gbu.init.CreditAudit;
 import dw.gbu.utils.PhoenixConnectUtil;
 import dw.gbu.utils.PropertiesUtil;
 import dw.gbu.utils.StringUtils;
@@ -11,7 +10,6 @@ import org.apache.flink.configuration.Configuration;
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.flink.streaming.api.functions.sink.RichSinkFunction;
 import org.apache.log4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
 import java.sql.*;
@@ -26,8 +24,6 @@ public class OdsCreditInfoToHbase extends RichSinkFunction<ObjectNode> implement
 
     public OdsCreditInfoToHbase() {
         super();
-
-
     }
 
     /**
@@ -48,11 +44,11 @@ public class OdsCreditInfoToHbase extends RichSinkFunction<ObjectNode> implement
     public void close() throws Exception {
         super.close();
         //关闭连接和释放资源
-        if (connection != null) {
-            connection.close();
-        }
         if (ps != null) {
             ps.close();
+        }
+        if (connection != null) {
+            connection.close();
         }
     }
 

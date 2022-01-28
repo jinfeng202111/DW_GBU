@@ -1,7 +1,6 @@
 package dw.gbu.jx;
 
-import dw.gbu.init.CreditAudit;
-import org.apache.flink.api.common.serialization.SerializationSchema;
+
 import org.apache.flink.runtime.state.filesystem.FsStateBackend;
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.flink.streaming.api.CheckpointingMode;
@@ -10,7 +9,6 @@ import org.apache.flink.streaming.api.environment.CheckpointConfig;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer011;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumerBase;
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer011;
 import org.apache.flink.streaming.util.serialization.JSONKeyValueDeserializationSchema;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.log4j.Logger;
@@ -18,8 +16,8 @@ import org.apache.log4j.Logger;
 import java.util.Properties;
 
 public class CreditAuditOds {
-    private static final org.apache.log4j.Logger log = Logger.getLogger(CreditAuditOds.class);
-    private static final String topic_ods_credit_audit = "ods-t-ec-credit-audit";
+    private static final Logger log = Logger.getLogger(CreditAuditOds.class);
+    private static final String topic_ods_credit_audit = "ods-ec-credit-audit";
 
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();

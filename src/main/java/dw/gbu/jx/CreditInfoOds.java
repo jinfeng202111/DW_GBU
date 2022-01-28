@@ -69,7 +69,7 @@ public class CreditInfoOds {
                 (SerializationSchema<ObjectNode>) new CreditInfoOdsSchema(),
                 props
         )).name("CreditInfoOdsKafka");
-**/
+        **/
 
         //触发执行
         env.execute(CreditInfoOds.class.getName());

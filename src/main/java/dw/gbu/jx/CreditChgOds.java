@@ -14,7 +14,7 @@ import org.apache.kafka.clients.consumer.ConsumerConfig;
 import java.util.Properties;
 
 public class CreditChgOds {
-    private static final String topic_credit_chg = "ods-t-ec-credit-chg2";
+    private static final String topic_credit_chg = "ods-ec-credit-chg";
 
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();

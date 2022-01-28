@@ -46,12 +46,12 @@ public class OdsCreditChgToHbase extends RichSinkFunction<ObjectNode> implements
     public void close() throws Exception {
         super.close();
         //关闭连接和释放资源
-
-        if (connection != null) {
-            connection.close();
-        }
+        //关闭连接和释放资源
         if (ps != null) {
             ps.close();
+        }
+        if (connection != null) {
+            connection.close();
         }
 
     }

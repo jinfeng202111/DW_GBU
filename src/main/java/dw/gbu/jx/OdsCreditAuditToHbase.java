@@ -29,8 +29,6 @@ public class OdsCreditAuditToHbase extends RichSinkFunction<ObjectNode> implemen
 
     public OdsCreditAuditToHbase() {
         super();
-
-
     }
 
     /**
@@ -50,14 +48,12 @@ public class OdsCreditAuditToHbase extends RichSinkFunction<ObjectNode> implemen
     public void close() throws Exception {
         super.close();
         //关闭连接和释放资源
-
-        if (connection != null) {
-            connection.close();
-        }
         if (ps != null) {
             ps.close();
         }
-
+        if (connection != null) {
+            connection.close();
+        }
     }
 
     /**
