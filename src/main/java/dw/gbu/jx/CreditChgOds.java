@@ -1,6 +1,10 @@
 package dw.gbu.jx;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import org.apache.flink.api.java.functions.KeySelector;
 import org.apache.flink.runtime.state.filesystem.FsStateBackend;
+import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.JsonNode;
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.flink.streaming.api.CheckpointingMode;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
@@ -27,7 +31,7 @@ public class CreditChgOds {
         env.getCheckpointConfig().enableExternalizedCheckpoints(CheckpointConfig.ExternalizedCheckpointCleanup.RETAIN_ON_CANCELLATION);
 // 设置状态后端：MemoryStateBackend、FsStateBackend、RocksDBStateBackend，这里设置基于文件的状态后端
         //env.setStateBackend(new FsStateBackend("file:\\G\\flink\\checkpoints"));
-        env.enableCheckpointing(10000);
+        env.enableCheckpointing(10000000);
         //设置模式为：exactly_one，仅一次语义
         env.getCheckpointConfig().setCheckpointingMode(CheckpointingMode.EXACTLY_ONCE);
         //确保检查点之间有1s的时间间隔【checkpoint最小间隔】
@@ -58,7 +62,19 @@ public class CreditChgOds {
         streamSource.print();
 
         //数据插入到ods层的hbase表
-        streamSource.addSink(new OdsCreditChgToHbase()).name("OdsCreditChgToHbase");
+        streamSource.keyBy(new KeySelector<ObjectNode, Object>() {
+
+                    @Override
+                    public Object getKey(ObjectNode jsonNodes) throws Exception {
+                        JsonNode jnv = jsonNodes.get("value");
+
+                        JSONObject jsonObject = JSONObject.parseObject(jnv.toString());
+                        JSONArray datas = (JSONArray) jsonObject.get("data");
+                        String id = JSONObject.parseObject(datas.get(0).toString()).get("credit_code").toString();
+                        return id;
+                    }
+                })
+                .addSink(new OdsCreditChgToHbase()).name("OdsCreditChgToHbase");
 
         //触发执行
         env.execute(CreditChgOds.class.getName());

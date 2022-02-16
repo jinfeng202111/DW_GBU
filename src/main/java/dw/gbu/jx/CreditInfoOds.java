@@ -1,8 +1,12 @@
 package dw.gbu.jx;
 
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import org.apache.flink.api.common.serialization.SerializationSchema;
+import org.apache.flink.api.java.functions.KeySelector;
 import org.apache.flink.runtime.state.filesystem.FsStateBackend;
+import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.JsonNode;
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.flink.streaming.api.CheckpointingMode;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
@@ -13,6 +17,7 @@ import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumerBase;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer011;
 import org.apache.flink.streaming.util.serialization.JSONKeyValueDeserializationSchema;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
+
 import java.util.Properties;
 
 public class CreditInfoOds {
@@ -59,17 +64,34 @@ public class CreditInfoOds {
 
         streamSource.print();
 
-        //数据插入到ods层的hbase表
-        streamSource.addSink(new OdsCreditInfoToHbase()).name("OdsCreditInfoToHbase");
+
+        // ObjectNode处如果是自定义的pojo，需要重写hashCode方法
+        streamSource.keyBy(new KeySelector<ObjectNode, Object>() {
+
+                    @Override
+                    public Object getKey(ObjectNode jsonNodes) throws Exception {
+                        JsonNode jnv = jsonNodes.get("value");
+
+                        JSONObject jsonObject = JSONObject.parseObject(jnv.toString());
+                        JSONArray datas = (JSONArray) jsonObject.get("data");
+                        String id = JSONObject.parseObject(datas.get(0).toString()).get("bill_code").toString();
+                        return id;
+                    }
+                })
+                //数据插入到ods层的hbase表
+                .addSink(new OdsCreditInfoToHbase()).name("OdsCreditInfoToHbase");
+
+
+        //streamSource.addSink(new OdsCreditInfoToHbase()).name("OdsCreditInfoToHbase");
 
         //数据流到汇总层的topic
         /**
-        streamSource.addSink(new FlinkKafkaProducer011<ObjectNode>(
-                "dws-credit-info",
-                (SerializationSchema<ObjectNode>) new CreditInfoOdsSchema(),
-                props
-        )).name("CreditInfoOdsKafka");
-        **/
+         streamSource.addSink(new FlinkKafkaProducer011<ObjectNode>(
+         "dws-credit-info",
+         (SerializationSchema<ObjectNode>) new CreditInfoOdsSchema(),
+         props
+         )).name("CreditInfoOdsKafka");
+         **/
 
         //触发执行
         env.execute(CreditInfoOds.class.getName());

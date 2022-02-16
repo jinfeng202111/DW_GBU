@@ -46,7 +46,11 @@
     </property>
     <property>
        <name>zookeeper.session.timeout</name>
-       <value>90000</value>
+       <value>120000</value>
+    </property>
+    <property>
+      <name>hbase.zookeeper.property.tickTime</name>
+      <value>6000</value>
     </property>
 <!--regionserver因与zookeeper失去心跳后可以自动重启，而不是直接退出-->
     <property>
